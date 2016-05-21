@@ -155,7 +155,7 @@ If an error is encountered when processing a URL scheme, an alert will be displa
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by submitting an issue (we don't bite and you just might get some swag). Thank you!
+Find a bug or want to request a new feature? Please let us know by submitting an issue. Thank you!
 
 ## Contributing
 
