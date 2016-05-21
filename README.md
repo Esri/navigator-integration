@@ -21,9 +21,9 @@ You can use the Navigator for ArcGIS URL scheme to launch Navigator and perform 
 
 Navigator URLs start with the identifier `arcgis-navigator` and may contain additional parameters of the form:
 
-```html
+`
 arcgis-navigator://?parameter=value&parameter=value
-```
+`
 
 The remainder of this document describes the various parameters supported by Navigator.
 
@@ -41,7 +41,7 @@ The `stopname` parameter is optional.
 
 The following example URL defines a single stop using a latitude and longitude:
 
-```html
+```
 arcgis-navigator://?stop=43.651508,-70.290554
 ```
 
