@@ -53,7 +53,7 @@ arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
 
 This example URL defines a single stop using a latitude and longitude and includes a name for the stop.
 
-```html
+```
 arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 
