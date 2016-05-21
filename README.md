@@ -47,7 +47,7 @@ arcgis-navigator://?stop=43.651508,-70.290554
 
 This example URL defines a single stop using an address.
 
-```html
+```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
 ```
 
@@ -59,7 +59,7 @@ arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
 
 If either the name or address contains reserved characters, these should be encoded. For example, this URL defines a single stop named ‘Street & Co.’:
 
-```html
+```
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
 ```
 
@@ -76,7 +76,7 @@ The `start` parameter includes either a latitude and longitude or a query format
 
 The following example URL displays directions between the Portland International Jetport and Hadlock Field:
 
-```html
+```
 arcgis-navigator://?stop=271+Park+Ave,+Portland+ME&stopname=Hadlock+Field&start=PWM&startname=Portland+International+Jetport
 ```
 
@@ -84,13 +84,13 @@ arcgis-navigator://?stop=271+Park+Ave,+Portland+ME&stopname=Hadlock+Field&start=
 
 Navigator can generate directions to multiple stops. Each stop is denoted with a `stop` parameter. The following example URL displays directions to two stops.
 
-```html
+```
 arcgis-navigator://?stop=7+Exchange+St,+Portland,+ME&stop=225+Two+Lights+Rd,+Cape+Elizabeth,+ME
 ```
 
 In the following example the URL contains two stops with stop names:
 
-```html
+```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101&stopname=Rising+Tide&stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 ###Optimize route:
@@ -100,7 +100,7 @@ When multiple stops are included, Navigator can optionally optimize the order of
 
 The following example URL specifies that the order of the stops should be optimized.
 
-```html
+```
 arcgis-navigator://?stop=43.65958,-70.25118&stop=43.65761,-70.25388&optimize=true
 ```
 
@@ -111,7 +111,7 @@ Navigator maps can include multiple travel modes. If the `travelmode` parameter 
 
 The following example URL displays walking directions to Esri.
 
-```html
+```
 arcgis-navigator://?stop=380+New+York+St,+Redlands,+CA&stopname=Esri&travelmode=Walking+Time
 ```
 
@@ -140,7 +140,7 @@ If the `callback` parameter is specified the app will be notified regardless of 
 
 The following example URL specifies that Navigator should enter navigation mode and that the custom app, my-cool-app, should be notified when navigation completes. Because the `callbackprompt` parameter is not present, control will pass directly to the calling app and no prompt will be displayed. 
 
-```html
+```
 arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=my-cool-app://
 ```
 
