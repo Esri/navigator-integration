@@ -2,18 +2,18 @@
 
 Multi Language repository which explains the use of the custom URL scheme in Navigator for ArcGIS. This project contains documentation and sample code for creating custom URL schemes.
 
-##What's included
+## What's included
 
 * [Documentation](#documentation) on the structure of the URL scheme
-* Sample code for iOS, Android and JavaScript
+* [Sample code](#sample) for iOS (Swift), Android (Java) and Web (JavaScript)
 
-##Getting started
+## Getting started
 
 Read the documentation below and then clone down the appropriate language into your development environment
 
 ## Documentation
 
-###Navigator for ArcGIS URL Scheme
+####Navigator for ArcGIS URL Scheme
 
 A URL scheme allows you to launch a native app from another native or web application. You can set options in the URL that will be passed to the launched application allowing it to perform specific functions. This capability exists on both the iOS an Android platforms.
 
@@ -27,7 +27,7 @@ arcgis-navigator://?parameter=value&parameter=value
 
 The remainder of this document describes the various parameters supported by Navigator.
 
-###Display directions:
+####Display directions
 
 The simplest scheme that may be used to request and display directions to a single location. The user’s current location is used as the starting point. The map’s default travel mode is used. 
 
@@ -63,7 +63,7 @@ If either the name or address contains reserved characters, these should be enco
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
 ```
 
-###Custom starting point:
+####Custom starting point
 
 To specify a starting point other than the user’s current location:
 
@@ -80,7 +80,7 @@ The following example URL displays directions between the Portland International
 arcgis-navigator://?stop=271+Park+Ave,+Portland+ME&stopname=Hadlock+Field&start=PWM&startname=Portland+International+Jetport
 ```
 
-###Multiple stops:
+####Multiple stops
 
 Navigator can generate directions to multiple stops. Each stop is denoted with a `stop` parameter. The following example URL displays directions to two stops.
 
@@ -93,7 +93,7 @@ In the following example the URL contains two stops with stop names:
 ```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101&stopname=Rising+Tide&stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
-###Optimize route:
+####Optimize route
 When multiple stops are included, Navigator can optionally optimize the order of the stops. To optimize the order of the stops, include the `optimize` parameter.
 
 `optimize`: Specifies that the order of the stops should be optimized. Defaults to false.
@@ -104,7 +104,7 @@ The following example URL specifies that the order of the stops should be optimi
 arcgis-navigator://?stop=43.65958,-70.25118&stop=43.65761,-70.25388&optimize=true
 ```
 
-###Travel mode:
+####Travel mode
 Navigator maps can include multiple travel modes. If the `travelmode` parameter is specified it will be used when the directions are generated. Otherwise the default travel mode will be used.
 
 `travelmode`: Specifies the method of transportation.
@@ -124,12 +124,12 @@ Note that travel modes are defined by the map. The travel modes for the default 
 - Walking Time
 - Walking Distance
 
-###Navigation mode:
+####Navigation mode
 To automatically enter navigation mode, specify the `navigate` parameter.
 
 `navigate`: If true, navigation mode will be activated. 
 
-###Specify a callback URL:
+####Specify a callback URL
 If you’d like your app to be notified when navigation completes you can include a callback URL. 
 
 `callback`: Specifies the URL to call when navigation is complete. 
@@ -144,12 +144,17 @@ The following example URL specifies that Navigator should enter navigation mode 
 arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=my-cool-app://
 ```
 
-###Errors:
+####Errors
 If an error is encountered when processing a URL scheme, an alert will be displayed to the user.
+
+## Sample Code
+
+Links to sample code
+
 
 ## Resources and Related Repositories
 
-* [Navigator Documentation](http://doc.arcgis.com/en/navigator/)
+* [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
 * [Explorer for ArcGIS Integration Repository](http://developers.arcgis.com)
 
@@ -160,8 +165,6 @@ Find a bug or want to request a new feature? Please let us know by submitting an
 ## Contributing
 
 Anyone and everyone is welcome to contribute. Please see our [guidelines for contributing](https://github.com/esri/contributing).
-
-## Credits
 
 ## Licensing
 Copyright 2016 Esri
