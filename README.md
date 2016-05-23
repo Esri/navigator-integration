@@ -11,7 +11,7 @@ Multi Language repository which explains the use of the custom URL scheme in Nav
 
 Read the documentation below and then clone down the appropriate language into your development environment
 
-## Documentation
+## Documentation<a name="documentation"></a>
 
 ####Navigator for ArcGIS URL Scheme
 
@@ -147,7 +147,7 @@ arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=
 ####Errors
 If an error is encountered when processing a URL scheme, an alert will be displayed to the user.
 
-## Sample Code
+## Sample Code<a name="sample"></a>
 
 Links to sample code
 
