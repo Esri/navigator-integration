@@ -1,8 +1,6 @@
-# Navigator integration 
+# Navigator custom URL schemes
 
 Multi Language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
-
-(how about "Navigator Custom URL Schemes" for the title? It's longer, but more descriptive. Also, the title of the doc about how users switch between apps is called "Integrate with Collector." So could cause some confusion if you make the title of this "Navigator Integration".)
 
 ## What's included
 
@@ -17,7 +15,7 @@ Read the documentation below and then clone down the appropriate language into y
 
 ####Navigator for ArcGIS URL scheme
 
-A URL scheme allows you to launch a native app from another native or web app. You can set options(or parameters?) in the URL that will be passed to the app you want to launch, causing it to perform specific functions. This capability is available on the iOS and Android platforms.
+A URL scheme allows you to launch a native app from another native or web app. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions. This capability is available on the iOS and Android platforms.
 
 You can use this URL scheme to launch Navigator and perform searches for destinations, calculate routes to one or more stops, or start navigating. 
 
@@ -31,15 +29,13 @@ The remainder of this document describes the various parameters supported by Nav
 
 ####Display directions
 
-This is the simplest scheme that can be used to request and display directions to a single location (is this the simplest scheme to request and display directions to a single location, or the simplest scheme you can use? A subtle, but noteworthy difference). The user’s current location is used as the starting point. The map’s default travel mode is used (does the default travel mode vary from user to user? If so, would leave this. If not, would specify what the default is). 
+This is the simplest scheme that can be used. It requests and displays directions to a single location. The user’s current location is used as the starting point. The map’s default travel mode is used. 
 
 `stop`: Sets the destination for directions. 
 
 `stopname`: Specifies the name of the stop (*optional*).
 
 The `stop` parameter may be either a set of latitude and longitude coordinates, or a query formatted address. 
-The `stopname` parameter is optional (need to say this again?). 
-
 
 The following example URL defines a single stop using a set of latitude and longitude coordinates:
 
@@ -47,7 +43,7 @@ The following example URL defines a single stop using a set of latitude and long
 arcgis-navigator://?stop=43.651508,-70.290554
 ```
 
-This example URL defines a single stop using an address: (should we put this before the coordindate stuff? are more users going to be using addresses than coordinates?)
+This example URL defines a single stop using an address: 
 
 ```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
@@ -59,7 +55,7 @@ This example URL defines a single stop using latitude and longitude coordinates,
 arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 
-If either the name or address contains reserved characters, these should be (percent?) encoded. For example, this URL defines a single stop named ‘Street & Co.’:
+If either the name or address contains reserved characters, these should be URL encoded. For example, this URL defines a single stop named ‘Street & Co.’:
 
 ```
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
@@ -73,7 +69,7 @@ Use this to specify a starting point different than the user’s current locatio
 
 `startname`: Specifies the name of the start (optional).
 
-The `start` parameter includes either latitude and longitude coordinates, or a query formatted address. The `startname` parameter is optional (need to say this again?). 
+The `start` parameter includes either latitude and longitude coordinates, or a query formatted address.
 
 The following example URL displays directions between Portland International Jetport and Hadlock Field:
 
@@ -110,13 +106,13 @@ Navigator maps can include multiple travel modes. If the `travelmode` parameter 
 
 `travelmode`: Specifies the transportation method.
 
-The following example URL displays walking directions to Esri(what do you think about having an example that displays trucking directions, since more users will be using this travel mode than walking? also, would state whether your using the distance/time mode):
+The following example URL displays directions to Esri generated based on the Trucking Time travel mode:
 
 ```
-arcgis-navigator://?stop=380+New+York+St,+Redlands,+CA&stopname=Esri&travelmode=Walking+Time
+arcgis-navigator://?stop=380+New+York+St,+Redlands,+CA&stopname=Esri&travelmode=Trucking+Time
 ```
 
-Note that travel modes are defined by the map. The travel modes for the default Esri maps are (aren't there also rural time and rural distance travel modes?): 
+Note that travel modes are defined by the map. The travel modes for the default Esri maps are: 
 
 - Driving Time
 - Driving Distance
@@ -135,9 +131,9 @@ If you’d like users of your app to be notified when navigation completes, you 
 
 `callback`: Specifies the URL to call when navigation is complete. 
 
-`callbackprompt`: Indicates that an alert should appear asking the user if control should be given back to the calling app. Specifies the text to display when prompting the user (this last sentence is a little confusing to me. what does "when prompting the user" mean?) (*optional*)
+`callbackprompt`: Indicates that an alert should appear asking the user if control should be given back to the calling app, and specifies the text of that alert (*optional*).
 
-If the `callback` parameter is specified the app will be notified regardless of the value of the `navigate` parameter. Note that your custom URL scheme must be registered with the operating system (should include a link to how to register the scheme? or do most readers already know how to do this?).
+If the `callback` parameter is specified the app will be notified regardless of the value of the `navigate` parameter. Note that your custom URL scheme must be registered with the operating system.
 
 The following example URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in the below URL, should be notified when navigation completes. Because the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
@@ -150,15 +146,13 @@ If an error is encountered when processing a URL scheme, the user will receive a
 
 ## Sample code<a name="sample"></a>
 
-Links to sample code(under development?)
+Links to sample code
 
 ## Resources and related repositories
 
 * [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
 * [Explorer for ArcGIS Integration Repository](http://developers.arcgis.com)
-
-(are the Collector and Explorer repos going to be ready by the time 2.0 releases?)
 
 ## Issues
 
