@@ -1,4 +1,4 @@
-# Navigator custom URL schemes
+# Navigator custom URL scheme
 
 Multi Language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
 
@@ -120,6 +120,8 @@ Note that travel modes are defined by the map. The travel modes for the default 
 - Trucking Distance
 - Walking Time
 - Walking Distance
+- Rural Driving Time
+- Rural Driving Distance
 
 ####Navigation mode
 To automatically start navigating, specify the `navigate` parameter.
@@ -152,7 +154,6 @@ Links to sample code
 
 * [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
-* [Explorer for ArcGIS Integration Repository](http://developers.arcgis.com)
 
 ## Issues
 
