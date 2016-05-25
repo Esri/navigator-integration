@@ -135,7 +135,9 @@ If you’d like users of your app to be notified when navigation completes, you 
 
 `callbackprompt`: Indicates that an alert should appear asking the user if control should be given back to the calling app, and specifies the text of that alert (*optional*).
 
-If the `callback` parameter is specified the app will be notified regardless of the value of the `navigate` parameter. Note that your custom URL scheme must be registered with the operating system.
+If the `callback` parameter is specified the app will be notified regardless of the value of the `navigate` parameter. 
+
+*Note:* Your custom URL scheme must be registered with the operating system, for more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html) 
 
 The following example URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in the below URL, should be notified when navigation completes. Because the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
@@ -154,6 +156,11 @@ Links to sample code
 
 * [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
+
+	Not Esri's doc but still pretty dang useful :-)
+
+* [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899)
+* [Google's guide to Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html)
 
 ## Issues
 
