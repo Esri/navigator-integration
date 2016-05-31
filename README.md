@@ -35,7 +35,7 @@ This is one of the simplest schemes that can be used. It requests and displays d
 
 `stopname`: Specifies the name of the stop (*optional*).
 
-The `stop` parameter may be either a set of latitude and longitude coordinates, or a query formatted address. 
+The `stop` parameter may either be a set of latitude and longitude coordinates, or a query formatted address. 
 
 The following example URL defines a single stop using a set of latitude and longitude coordinates:
 
@@ -49,7 +49,7 @@ This example URL defines a single stop using an address:
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
 ```
 
-This example URL defines a single stop using latitude and longitude coordinates, and includes a stop name:
+This example URL defines a single stop using a set of latitude and longitude coordinates, and includes a stop name:
 
 ```
 arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
@@ -69,7 +69,7 @@ Use this to specify a starting point different than the user’s current locatio
 
 `startname`: Specifies the name of the start (optional).
 
-The `start` parameter includes either latitude and longitude coordinates, or a query formatted address.
+The `start` parameter includes either a set of latitude and longitude coordinates, or a query formatted address.
 
 The following example URL displays directions between Portland International Jetport and Hadlock Field:
 
@@ -106,7 +106,7 @@ Navigator maps can include multiple travel modes. If the `travelmode` parameter 
 
 `travelmode`: Specifies the transportation method.
 
-The following example URL displays directions to Esri generated based on the Trucking Time travel mode:
+The following example URL displays directions to Esri that were generated based on the Trucking Time travel mode:
 
 ```
 arcgis-navigator://?stop=380+New+York+St,+Redlands,+CA&stopname=Esri&travelmode=Trucking+Time
@@ -157,7 +157,7 @@ Links to sample code
 * [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
 
-	Not Esri's doc but still pretty dang useful :-)
+Not Esri's doc but still pretty dang useful :-)
 
 * [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899)
 * [Google's guide to Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html)
