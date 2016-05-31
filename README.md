@@ -131,11 +131,9 @@ To automatically start navigating, specify the `navigate` parameter.
 ####Enable notifications when navigation completes
 If you’d like users of your app to be notified when navigation completes, you can include a callback URL. 
 
-`callback`: Specifies the URL to call when navigation is complete. 
+`callback`: Specifies the URL to call when navigation is complete. If the `callback` parameter is specified the app will be notified after navigation completes.  
 
 `callbackprompt`: Indicates that an alert should appear asking the user if control should be given back to the calling app, and specifies the text of that alert (*optional*).
-
-If the `callback` parameter is specified the app will be notified regardless of the value of the `navigate` parameter. 
 
 *Note:* Your custom URL scheme must be registered with the operating system, for more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html) 
 
