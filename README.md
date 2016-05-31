@@ -13,7 +13,7 @@ Read the documentation below and then clone down the appropriate language into y
 
 ## Documentation<a name="documentation"></a>
 
-####Navigator for ArcGIS URL scheme
+####What is the Navigator for ArcGIS URL scheme?
 
 A URL scheme allows you to launch a native app from another native or web app. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions. This capability is available on the iOS and Android platforms.
 
@@ -27,7 +27,7 @@ arcgis-navigator://?parameter=value&parameter=value
 
 The remainder of this document describes the various parameters supported by Navigator.
 
-####Display directions
+####Display directions to a single location
 
 This is one of the simplest schemes that can be used. It requests and displays directions to a single location. The user’s current location is used as the starting point. The map’s default travel mode is used. 
 
@@ -61,7 +61,7 @@ If either the name or address contains reserved characters, these should be URL 
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
 ```
 
-####Custom starting point
+####Specify a custom starting point
 
 Use this to specify a starting point different than the user’s current location:
 
@@ -77,7 +77,7 @@ The following example URL displays directions between Portland International Jet
 arcgis-navigator://?stop=271+Park+Ave,+Portland+ME&stopname=Hadlock+Field&start=PWM&startname=Portland+International+Jetport
 ```
 
-####Multiple stops
+####Generate directions to multiple stops
 
 Navigator can generate directions to multiple stops. Each stop is denoted with a `stop` parameter. The following example URL displays directions to two stops:
 
@@ -90,7 +90,7 @@ In the following example the URL contains two stops with stop names:
 ```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101&stopname=Rising+Tide&stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
-####Optimize route
+####Enable route optimization 
 Navigator can optimize the order of multiple stops, if you include the `optimize` parameter.
 
 `optimize`: Specifies that the order of stops should be optimized. Defaults to false.
@@ -101,7 +101,7 @@ The following example URL specifies that the order of the stops should be optimi
 arcgis-navigator://?stop=43.65958,-70.25118&stop=43.65761,-70.25388&optimize=true
 ```
 
-####Travel mode
+####Set the travel mode
 Navigator maps can include multiple travel modes. If the `travelmode` parameter is specified it will be used when the directions are generated. Otherwise the default travel mode will be used.
 
 `travelmode`: Specifies the transportation method.
@@ -123,12 +123,12 @@ Note that travel modes are defined by the map. The travel modes for the default 
 - Rural Driving Time
 - Rural Driving Distance
 
-####Navigation mode
+####Automatically start navigating
 To automatically start navigating, specify the `navigate` parameter.
 
 `navigate`: If true, navigation mode will be activated. 
 
-####Specify a callback URL
+####Enable notifications when navigation completes
 If you’d like users of your app to be notified when navigation completes, you can include a callback URL. 
 
 `callback`: Specifies the URL to call when navigation is complete. 
