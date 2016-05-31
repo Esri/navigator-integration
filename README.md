@@ -29,7 +29,7 @@ The remainder of this document describes the various parameters supported by Nav
 
 ####Display directions
 
-This is the simplest scheme that can be used. It requests and displays directions to a single location. The user’s current location is used as the starting point. The map’s default travel mode is used. 
+This is one of the simplest schemes that can be used. It requests and displays directions to a single location. The user’s current location is used as the starting point. The map’s default travel mode is used. 
 
 `stop`: Sets the destination for directions. 
 
