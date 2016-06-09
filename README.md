@@ -17,6 +17,8 @@ Read the documentation below and then clone down the appropriate language into y
 
 A URL scheme allows you to launch a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, or navigating. This capability is available on the iOS and Android platforms.
 
+####Basic URL scheme structure
+
 All Navigator URL schemes start with the identifier `arcgis-navigator` and may contain additional parameters that follow the form:
 
 `
@@ -129,11 +131,11 @@ To have Navigator automatically start navigating, specify the `navigate` paramet
 ####Enable notifications when navigation completes
 If you’d like your app users to be notified when navigation completes, include a callback URL. 
 
-`callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified the app will be notified after navigation completes.  
+`callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified the app will be notified when navigation completes.  
 
 `callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app, and specifies the text of that message (*optional*).
 
-*Note:* Your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
+Note that your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
 The following URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in this example, should be notified when navigation completes. Since the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
