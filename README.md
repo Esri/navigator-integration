@@ -15,17 +15,15 @@ Read the documentation below and then clone down the appropriate language into y
 
 ####What is the Navigator for ArcGIS URL scheme?
 
-A URL scheme allows you to launch a native app from another native or web app. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions. This capability is available on the iOS and Android platforms.
+A URL scheme allows you to launch a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, or navigating. This capability is available on the iOS and Android platforms.
 
-You can use this URL scheme to launch Navigator and perform searches for destinations, calculate routes to one or more stops, or start navigating. 
-
-Navigator URLs start with the identifier `arcgis-navigator` and may contain additional parameters that follow the form:
+All Navigator URL schemes start with the identifier `arcgis-navigator` and may contain additional parameters that follow the form:
 
 `
 arcgis-navigator://?parameter=value&parameter=value
 `
 
-The remainder of this document describes the various parameters supported by Navigator.
+The rest of this document describes the various parameters Navigator supports.
 
 ####Display directions to a single location
 
@@ -49,13 +47,13 @@ This example URL defines a single stop using an address:
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
 ```
 
-This example URL defines a single stop using a set of latitude and longitude coordinates, and includes a stop name:
+This example URL defines a single stop using a set of latitude and longitude coordinates, and also includes a stop name:
 
 ```
 arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 
-If either the name or address contains reserved characters, these should be URL encoded. For example, this URL defines a single stop named ‘Street & Co.’:
+If the name or address contains reserved characters, these should be URL encoded. For example, this URL defines a single stop named ‘Street & Co.’:
 
 ```
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
@@ -67,7 +65,7 @@ Use this to specify a starting point different than the user’s current locatio
 
 `start`: Sets the starting point for directions.
 
-`startname`: Specifies the name of the start (optional).
+`startname`: Specifies the name of the start (*optional*).
 
 The `start` parameter includes either a set of latitude and longitude coordinates, or a query formatted address.
 
@@ -85,13 +83,13 @@ Navigator can generate directions to multiple stops. Each stop is denoted with a
 arcgis-navigator://?stop=7+Exchange+St,+Portland,+ME&stop=225+Two+Lights+Rd,+Cape+Elizabeth,+ME
 ```
 
-In the following example the URL contains two stops with stop names:
+The following example contains two stops with stop names:
 
 ```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101&stopname=Rising+Tide&stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 ####Enable route optimization 
-Navigator can optimize the order of multiple stops, if you include the `optimize` parameter.
+Navigator can optimize the order of multiple stops if you include the `optimize` parameter in a URL scheme.
 
 `optimize`: Specifies that the order of stops should be optimized. Defaults to false.
 
@@ -106,13 +104,13 @@ Navigator maps can include multiple travel modes. If the `travelmode` parameter 
 
 `travelmode`: Specifies the transportation method.
 
-The following example URL displays directions to Esri that were generated based on the Trucking Time travel mode:
+The following example URL displays directions to Esri that are generated based on the Trucking Time travel mode:
 
 ```
 arcgis-navigator://?stop=380+New+York+St,+Redlands,+CA&stopname=Esri&travelmode=Trucking+Time
 ```
 
-Note that travel modes are defined by the map. The travel modes for the default Esri maps are: 
+Note that the map defines which travel modes are available. The default Esri maps have the following travel modes: 
 
 - Driving Time
 - Driving Distance
@@ -124,20 +122,20 @@ Note that travel modes are defined by the map. The travel modes for the default 
 - Rural Driving Distance
 
 ####Automatically start navigating
-To automatically start navigating, specify the `navigate` parameter.
+To have Navigator automatically start navigating, specify the `navigate` parameter.
 
 `navigate`: If true, navigation mode will be activated. 
 
 ####Enable notifications when navigation completes
-If you’d like users of your app to be notified when navigation completes, you can include a callback URL. 
+If you’d like your app users to be notified when navigation completes, include a callback URL. 
 
-`callback`: Specifies the URL to call when navigation is complete. If the `callback` parameter is specified the app will be notified after navigation completes.  
+`callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified the app will be notified after navigation completes.  
 
-`callbackprompt`: Indicates that an alert should appear asking the user if control should be given back to the calling app, and specifies the text of that alert (*optional*).
+`callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app, and specifies the text of that message (*optional*).
 
-*Note:* Your custom URL scheme must be registered with the operating system, for more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html) 
+*Note:* Your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
-The following example URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in the below URL, should be notified when navigation completes. Because the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
+The following URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in this example, should be notified when navigation completes. Since the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
 ```
 arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=my-cool-app://
@@ -152,13 +150,13 @@ Links to sample code
 
 ## Resources and related repositories
 
-* [Navigator for ArcGIS Documentation](http://doc.arcgis.com/en/navigator/)
-* [Collector for ArcGIS Integration Repository](http://developers.arcgis.com)
+* [Navigator for ArcGIS documentation](http://doc.arcgis.com/en/navigator/)
+* [Collector for ArcGIS integration repository](http://developers.arcgis.com)
 
 Not Esri's doc but still pretty dang useful :-)
 
-* [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899)
-* [Google's guide to Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html)
+* [Apple's guide to custom URL schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899)
+* [Google's guide to intents and intent filters](https://developer.android.com/guide/components/intents-filters.html)
 
 ## Issues
 
