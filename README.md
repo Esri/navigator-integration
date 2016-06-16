@@ -149,10 +149,8 @@ If an error is encountered when processing a URL scheme, the user will receive a
 ## Sample code<a name="sample"></a>
 
 * [Swift (iOS)](https://github.com/ArcGIS/navigator-integration/tree/master/src/Swift)
-* [Java (Android)](https://www.youtube.com/watch?v=oHg5SJYRHA0)
+* [Java (Android)](https://github.com/ArcGIS/navigator-integration/tree/master/src/Android)
 * [Python](https://github.com/ArcGIS/navigator-integration/tree/master/src/Python)
-* [Javascript (Web)](https://www.youtube.com/watch?v=oHg5SJYRHA0)
-
 
 ## Resources and related repositories
 
