@@ -135,7 +135,7 @@ If you’d like your app users to be notified when navigation completes, include
 
 `callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app and specifies the text of that message (*optional*).
 
-Note that your custom URL scheme must be registered with the operating system. For more information on this see, [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
+Note that your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
 The following URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in this example, should be notified when navigation completes. Since the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
@@ -164,7 +164,7 @@ Not Esri's doc but still pretty dang useful :-)
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by submitting an issue. Thank you!
+Find a bug or want to request a new feature? Please let us know by [submitting an issue](https://github.com/Esri/navigator-integration/issues/new). Thank you!
 
 ## Contributing
 
