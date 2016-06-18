@@ -5,27 +5,27 @@ This is a multi-language repository that contains documentation and sample code 
 ## What's included
 
 * [Documentation](#documentation) on the URL scheme structure
-* [Sample code](#sample) for iOS (Swift), Android (Java) and Web (JavaScript)
+* [Sample code](#sample) for iOS (Swift), Android (Java), and Web (JavaScript)
 
 ## Getting started
 
-Read the documentation below and then clone down the appropriate language into your development environment.
+Read the following documentation, and clone down the appropriate language into your development environment.
 
 ## Documentation<a name="documentation"></a>
 
 ####What is the Navigator for ArcGIS URL scheme?
 
-A URL scheme allows you to launch a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to launch, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, or navigating. This capability is available on the iOS and Android platforms.
+A URL scheme allows you to open a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to open, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, and navigating. This capability is available on the iOS and Android platforms.
 
 ####Basic URL scheme structure
 
-All Navigator URL schemes start with the identifier `arcgis-navigator` and may contain additional parameters that follow the form:
+All Navigator URL schemes start with the identifier `arcgis-navigator` and can contain additional parameters that follow the form:
 
 `
 arcgis-navigator://?parameter=value&parameter=value
 `
 
-The rest of this document describes the various parameters Navigator supports.
+The rest of this topic describes the various parameters Navigator supports.
 
 ####Display directions to a single location
 
@@ -35,7 +35,7 @@ This is one of the simplest schemes that can be used. It requests and displays d
 
 `stopname`: Specifies the name of the stop (*optional*).
 
-The `stop` parameter may either be a set of latitude and longitude coordinates, or a query formatted address. 
+The `stop` parameter can be either a set of latitude and longitude coordinates, or a query formatted address. 
 
 The following example URL defines a single stop using a set of latitude and longitude coordinates:
 
@@ -49,13 +49,13 @@ This example URL defines a single stop using an address:
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101
 ```
 
-This example URL defines a single stop using a set of latitude and longitude coordinates, and also includes a stop name:
+This example URL defines a single stop using a set of latitude and longitude coordinates and also includes a stop name:
 
 ```
 arcgis-navigator://?stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
 
-If the name or address contains reserved characters, these should be URL encoded. For example, this URL defines a single stop named ‘Street & Co.’:
+If the name or address contains reserved characters, these should be URL encoded. For example, this URL defines a single stop named Street & Co.:
 
 ```
 arcgis-navigator://?stop=33+Wharf+Street,+Portland+ME&stopname=Street+%26+Co.
@@ -102,7 +102,7 @@ arcgis-navigator://?stop=43.65958,-70.25118&stop=43.65761,-70.25388&optimize=tru
 ```
 
 ####Set the travel mode
-Navigator maps can include multiple travel modes. If the `travelmode` parameter is specified it will be used when the directions are generated. Otherwise the default travel mode will be used.
+Navigator maps can include multiple travel modes. If the `travelmode` parameter is specified, it will be used when the directions are generated. Otherwise, the default travel mode will be used.
 
 `travelmode`: Specifies the transportation method.
 
@@ -131,11 +131,11 @@ To have Navigator automatically start navigating, specify the `navigate` paramet
 ####Enable notifications when navigation completes
 If you’d like your app users to be notified when navigation completes, include a callback URL. 
 
-`callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified the app will be notified when navigation completes.  
+`callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified, the app will be notified when navigation completes.  
 
-`callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app, and specifies the text of that message (*optional*).
+`callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app and specifies the text of that message (*optional*).
 
-Note that your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
+Note that your custom URL scheme must be registered with the operating system. For more information on this see, [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
 The following URL specifies that Navigator should enter navigation mode and that the custom app, called my-cool-app in this example, should be notified when navigation completes. Since the `callbackprompt` parameter is not present, control will pass directly to the calling app and a prompt will not display. 
 
@@ -168,7 +168,7 @@ Find a bug or want to request a new feature? Please let us know by submitting an
 
 ## Contributing
 
-Anyone and everyone is welcome to contribute. Please see our [guidelines for contributing](https://github.com/esri/contributing).
+Anyone and everyone is welcome to contribute. See our [guidelines for contributing](https://github.com/esri/contributing).
 
 ## Licensing
 Copyright 2016 Esri
