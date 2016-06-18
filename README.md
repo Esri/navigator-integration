@@ -1,6 +1,6 @@
 # Navigator custom URL scheme
 
-Multi Language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
+This is a multi-language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
 
 ## What's included
 
