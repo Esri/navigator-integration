@@ -15,21 +15,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 """
 
-# generic library for generating the url schemes
-# can be called by import NavigatorURLScheme.py
 import csv
 import os
 import urllib
 import datetime
 
+'''
+Library for generating valid url schemes and generated html links/pages
+'''
+
 class NavigatorURLScheme():
+    """
+    generic library for generating the url schemes
+    """
+    # global variables
     __navigatorScheme = "arcgis-navigator://"
     __validParameters = ["start", "startname", "stop", "stopname", "optimize", "travelmode", "navigate", "callbackprompt", "callback"]
     __invalidStringCharacters = [" ", "&"]
     __parameterCount = 0  # counter for how many parameters have been passed to stringBuilder
 
-    # constructor
     def __init__(self, parameterDictionary):
+        """
+        constructor for the NavigatorURLScheme library
+        :param parameterDictionary: the dictionary of key/value pairs to be used when building url
+        """
         self.__parameterDictionary = parameterDictionary
         self.__stops = self.__parameterDictionary.get("stops", None)
         self.__start = self.__parameterDictionary.get("start", None)
@@ -41,8 +50,11 @@ class NavigatorURLScheme():
         self.__callback = self.__parameterDictionary.get("callback", None) \
             if self.__parameterDictionary.get("callback", None) is not None else None
 
-    # generate the URL string
     def generateURL(self):
+        """
+        function to generate the URL string
+        :return: stringBuilder: the validated url
+        """
         stringBuilder = self.__navigatorScheme + "?"
         if self._encodedLocations(self.__stops):
             stringBuilder += self._encodedLocations(self.__stops)
@@ -68,9 +80,12 @@ class NavigatorURLScheme():
         self._validateURL(stringBuilder)
         return stringBuilder
 
-    # generic function for travel mode
-    # encode travel mode
     def _encodedTravelMode(self, string=None):
+        """
+        generic function to encode travel mode if one is passed in via the parameterDictionary
+        :param string: optional string for travel mode
+        :return: travelmodelBuilder or None: returns encoded travel mode if one exists for inputted string
+        """
         travelmodeBuilder = ""
         formattedString = str(string).lower().replace(" ", "")
         switcher = {
@@ -87,13 +102,16 @@ class NavigatorURLScheme():
         if mode:
             if self.__parameterCount > 0: travelmodeBuilder += "&"
             travelmodeBuilder += urllib.quote_plus(mode)
+            return travelmodeBuilder
         else: return None
 
-    # generic function for stops and starts
-    # constructor # assuming always list of lists of stops OR list of start
-    # [['43.222,-76.444','esri'],['100 Commercial St, Portland, ME,04101','esri']] OR ['43.222,-76.444','esri']
-    # encode stop and starts
     def _encodedLocations(self, listLocations=None, isStop=True):
+        """
+        generic function for stops and starts assuming always list of lists of stops OR list of start
+        :param listLocations: [['43.222,-76.444','esri'],['100 Commercial St, Portland, ME,04101','esri']] OR ['43.222,-76.444','esri']
+        :param isStop: Boolean for start or stop
+        :return: stopBuilder: encode stop and starts
+        """
         stopBuilder = ""
         if listLocations:
             if not isStop:
@@ -119,10 +137,12 @@ class NavigatorURLScheme():
                         stopBuilder += locationType + location
         return stopBuilder
 
-    # generic function for call backs
-    # constructor
-    # encode the callback string
     def _encodedCallback(self, callbackList=None):
+        """
+        generic function for encoding call backs
+        :param callbackList: optional list for callback ["my-cool-app://", "My Cool App"]
+        :return: callbackBuilder: encoded the callback string
+        """
         callbackBuilder = ""
         hasPrompt = True if len(callbackList) > 1 else False
         if self.__parameterCount > 0: callbackBuilder += "&"
@@ -134,9 +154,11 @@ class NavigatorURLScheme():
             callbackBuilder += "callback=" + callbackScheme
         return callbackBuilder
 
-    # generic functions for validating url
-    # deconstruct the URL and perform basic validity test
     def _validateURL(self, stringBuilder):
+        """
+        generic function for validating url. deconstruct the URL and perform basic validity test
+        :param stringBuilder: takes the constructed url string
+        """
         applicationScheme, parameterString = self._splitStringBuilder(stringBuilder)
         # test applicationScheme is valid
         if applicationScheme != self.__navigatorScheme: raise ValueError("The application scheme is not valid for Navigator")
@@ -149,28 +171,42 @@ class NavigatorURLScheme():
                 for char in self.__invalidStringCharacters:
                     if char in parameterValue: raise ValueError("Invalid encoded value entered: " + parameterValue)
 
-    # general function to split into application scheme and parameters
     def _splitStringBuilder(self, stringBuilder):
+        """
+        supporting function of validateURL to split into application scheme and parameters
+        :param stringBuilder: takes the constructed url string
+        :return: applicationScheme, parameterString: splits the string by applicationScheme and parameterString
+        """
         stringBuilderSplit = stringBuilder.split("?")
         if stringBuilderSplit > 1: applicationScheme, parameterString = str(stringBuilderSplit[0]), str(stringBuilderSplit[1])
         else: applicationScheme, parameterString = str(stringBuilderSplit[0]), None
         return applicationScheme, parameterString
 
-    # general function to split parameters
     def _splitParameterString(self, parameterString):
+        """
+        supporting function of validateURL to split parameterString into individual parameters
+        :param parameterString: takes parameterString of url scheme
+        :return: parameters: list of parameters [param=value, param=value, ...]
+        """
         if parameterString and parameterString[0] == "&": parameterString = parameterString[1:len(parameterString)]
         parameters = parameterString.split("&") if parameterString else None
         return parameters
 
 
-# generic class for hyperlink tools related to app link
 class NavigatorURLHyperlinks():
+    """
+    generic class for hyperlink tools related to app link
+    """
     # empty constructor
     def __init__(self):
         pass
 
-    # generates an html page for a single link. Pass function url string and title
     def generateHTMLlink(self, validURL, title):
+        """
+        generates an html page for a single link
+        :param validURL: valid url string
+        :param title: title of hyperlink as string
+        """
         outfile = "applink_" + str(title) + ".htm"
         fp = open(outfile, 'w')
         fp.write("<!doctype html public \"-//w3c/dtd html 4.0 Transitional//en\">\
@@ -184,8 +220,12 @@ class NavigatorURLHyperlinks():
         fp.write("</body></html>")
         fp.close()
 
-    # generates a html page given a list of url lists ((urlStr_1, urlTitleStr_1), .... , (urlStr_N, urlTitleStr_N))
     def generateHTMLpage(self, validURLs, title):
+        """
+        generates a html page given
+        :param validURLs: a list of url lists [[urlStr_1, urlTitleStr_1], .... , [urlStr_N, urlTitleStr_N]]
+        :param title: title of html page as string
+        """
         outfile = "applinksPage_" + str(title) + ".htm"
         fp = open(outfile, 'w')
         fp.write("<!doctype html public \"-//w3c/dtd html 4.0 Transitional//en\">\
@@ -205,8 +245,15 @@ class NavigatorURLHyperlinks():
         fp.close()
         print("HTML page completed")
 
-    # generates url lists ((urlStr_1, urlTitleStr_1), .... , (urlStr_N, urlTitleStr_N)) for making html page
     def csv2Lists(self, csvLocation, urllinkIndex=0, titleIndex=1, delimiter=','):
+        """
+        supporting function for generateHTMLpage and generates url lists from csv file
+        :param csvLocation: full path to csv file
+        :param urllinkIndex: optional index of url within row tuple
+        :param titleIndex: optional index of title within row tuple
+        :param delimiter: optional delimiter parameter
+        :return: csvLists: a list of url lists [[urlStr_1, urlTitleStr_1], .... , [urlStr_N, urlTitleStr_N]]
+        """
         csvLists = []
         with open(str(csvLocation)) as csvFile:
             readCSV = csv.reader(csvFile, delimiter=delimiter)
