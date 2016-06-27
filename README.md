@@ -2,10 +2,10 @@
 
 This is a multi-language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
 
-##Version Supported
+##Versions Supported
 
-Navigator iOS 2.0.0 and greater
-Navigator Android 0.2.0 and greater
+* Navigator iOS 2.0.0 and greater
+* Navigator Android 0.2.0 (beta) and greater
 
 ## What's included
 
