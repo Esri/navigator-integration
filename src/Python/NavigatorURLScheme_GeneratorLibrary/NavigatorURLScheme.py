@@ -17,8 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 import csv
 import os
-import urllib
 import datetime
+import urllib.parse
 
 '''
 Library for generating valid url schemes and generated html links/pages
@@ -101,7 +101,7 @@ class NavigatorURLScheme():
         mode = switcher.get(formattedString, None)
         if mode:
             if self.__parameterCount > 0: travelmodeBuilder += "&"
-            travelmodeBuilder += urllib.quote_plus(mode)
+            travelmodeBuilder += urllib.parse.quote_plus(mode)
             return travelmodeBuilder
         else: return None
 
@@ -119,10 +119,10 @@ class NavigatorURLScheme():
                 locationType, locationNameType = "start=", "&startname="
                 hasName = True if len(listLocations) > 1 else False
                 if hasName:
-                    location, locationName = urllib.quote_plus(str(listLocations[0]), ",'"), urllib.quote_plus(str(listLocations[1]), ",'")
+                    location, locationName = urllib.parse.quote_plus(str(listLocations[0]), ",'"), urllib.parse.quote_plus(str(listLocations[1]), ",'")
                     stopBuilder += locationType + location + locationNameType + locationName
                 else:
-                    location = urllib.quote_plus(str(listLocations[0]), ",'")
+                    location = urllib.parse.quote_plus(str(listLocations[0]), ",'")
                     stopBuilder += locationType + location
             else:
                 locationType, locationNameType = "stop=", "&stopname="
@@ -130,10 +130,10 @@ class NavigatorURLScheme():
                     hasName = True if len(listLocation) > 1 else False
                     if self.__parameterCount > 0: stopBuilder += "&"
                     if hasName:
-                        location, locationName = urllib.quote_plus(str(listLocation[0]), ",'"), urllib.quote_plus(str(listLocation[1]), ",'")
+                        location, locationName = urllib.parse.quote_plus(str(listLocation[0]), ",'"), urllib.parse.quote_plus(str(listLocation[1]), ",'")
                         stopBuilder += locationType + location + locationNameType + locationName
                     else:
-                        location = urllib.quote_plus(str(listLocation[0]), ",'")
+                        location = urllib.parse.quote_plus(str(listLocation[0]), ",'")
                         stopBuilder += locationType + location
         return stopBuilder
 
@@ -147,7 +147,7 @@ class NavigatorURLScheme():
         hasPrompt = True if len(callbackList) > 1 else False
         if self.__parameterCount > 0: callbackBuilder += "&"
         if hasPrompt:
-            callbackScheme, callbackPrompt = str(callbackList[0]), urllib.quote_plus(str(callbackList[1]), ",'")
+            callbackScheme, callbackPrompt = str(callbackList[0]), urllib.parse.quote_plus(str(callbackList[1]), ",'")
             callbackBuilder += "callback=" + callbackScheme + "&callbackprompt=" + callbackPrompt
         else:
             callbackScheme = str(callbackList[0])
@@ -178,7 +178,7 @@ class NavigatorURLScheme():
         :return: applicationScheme, parameterString: splits the string by applicationScheme and parameterString
         """
         stringBuilderSplit = stringBuilder.split("?")
-        if stringBuilderSplit > 1: applicationScheme, parameterString = str(stringBuilderSplit[0]), str(stringBuilderSplit[1])
+        if len(stringBuilderSplit) > 1: applicationScheme, parameterString = str(stringBuilderSplit[0]), str(stringBuilderSplit[1])
         else: applicationScheme, parameterString = str(stringBuilderSplit[0]), None
         return applicationScheme, parameterString
 

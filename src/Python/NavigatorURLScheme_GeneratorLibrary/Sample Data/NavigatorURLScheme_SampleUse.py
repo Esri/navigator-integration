@@ -15,10 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 """
 
-
 '''EXAMPLE OF HOW TO CALL -- THIS WOULD ALL BE OUTSIDE LIBRARY'''
-
-from NavigatorURLScheme import *
+'''import library'''
+# if library is inside folder as your script you can use:
+# import NavigatorURLScheme
+from src.Python.NavigatorURLScheme_GeneratorLibrary.NavigatorURLScheme import NavigatorURLScheme, NavigatorURLHyperlinks
 
 '''User information'''
 # example variables -- all optional
@@ -31,33 +32,33 @@ callback = ["my-cool-app://", "My Cool App"]  # <-- use list
 # dictionary of variables -- parameters are optional by deleting key/value <--- need some error handling, like at least one stop??
 parameterDictionary = {'start': start, 'stops': stops}
 
-title = "stopInaccessible"
-explicitURL = 'arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house'
+title = "callbackPrompt_startThenStop"
+explicitURL = 'arcgis-navigator://?start=100+Commercial+St+Portland+ME&startname=Esri&stop=43.633332,-70.259971&stopname=My+House&callback=arcgis-colletor://&callbackprompt=Collector'
 
 
-# '''Call to libraries -- Generate single link pages from data above'''
-# # create NavigatorURLScheme object
-# # generateURL
-# navigatorURLObject = NavigatorURLScheme(parameterDictionary)
-# navigatorURL = navigatorURLObject.generateURL()
-# # OR
-# # create HTML file with single link
+'''Call to libraries -- Generate single link pages from data above'''
+# create NavigatorURLScheme object
+# generateURL
+navigatorURLObject = NavigatorURLScheme(parameterDictionary)
+navigatorURL = navigatorURLObject.generateURL()
+# OR
+# create HTML file with single link
 # NavigatorURLHyperlinks().generateHTMLlink(navigatorURL, title)
-# #NavigatorURLHyperlinks().generateHTMLlink(explicitURL, title)
+NavigatorURLHyperlinks().generateHTMLlink(explicitURL, title)
 
 
 '''Call to libraries -- Generate multiple link pages from either explicit list of CSV'''
-hyperlinkObject = NavigatorURLHyperlinks()
-# define list of link lists
-# generate html page from proper input
-# explicitURLs = (('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
-#                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
-#                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),)
-# hyperlinkObject.generateHTMLpage(explicitURLs)
-# OR
-# prepare list of link lists from CSV
-# generate html page from proper input
-fileLocation = '/Users/joel8641/Dropbox/Esri Material/NavigatorURLScheme/NavigatorURLScheme_Library/applink_testcases.csv'
-csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")
-htmlPageTitle = "FryesLeap"
-hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)
+# hyperlinkObject = NavigatorURLHyperlinks()
+# # define list of link lists
+# # generate html page from proper input
+# # explicitURLs = (('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
+# #                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
+# #                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),)
+# # hyperlinkObject.generateHTMLpage(explicitURLs)
+# # OR
+# # prepare list of link lists from CSV
+# # generate html page from proper input
+# fileLocation = '/Users/joel8641/Dropbox/Esri Material/NavigatorURLScheme/NavigatorURLScheme_Library/applink_testcases.csv'
+# csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")
+# htmlPageTitle = "FryesLeap"
+# hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)
