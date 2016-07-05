@@ -138,7 +138,7 @@ If you’d like your app users to be notified when navigation completes, include
 
 `callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified, the app will be notified when navigation completes.  
 
-`callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app and specifies the text of that message (*optional*).
+`callbackprompt`: Indicates the app name that should be used when Navigator asks the user if control should be given back to the calling app (*optional*).
 
 Note that your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
