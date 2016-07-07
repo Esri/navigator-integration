@@ -15,8 +15,9 @@ This is a multi-language repository that contains documentation and sample code 
 ## Getting started
 
 Read the following documentation, and clone down the appropriate language into your development environment.
+<a name="documentation"></a>
 
-## Documentation<a name="documentation"></a>
+## Documentation
 
 ####What is the Navigator for ArcGIS URL scheme?
 
@@ -150,8 +151,9 @@ arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=
 
 ####Errors
 If an error is encountered when processing a URL scheme, the user will receive an alert.
+<a name="sample"></a>
 
-## Sample code<a name="sample"></a>
+## Sample code
 
 * [Swift (iOS)](https://github.com/Esri/navigator-integration/tree/master/src/Swift)
 * [Java (Android)](https://github.com/Esri/navigator-integration/tree/master/src/Android)
