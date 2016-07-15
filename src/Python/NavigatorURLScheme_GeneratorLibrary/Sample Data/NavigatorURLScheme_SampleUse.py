@@ -36,29 +36,29 @@ title = "callbackPrompt_startThenStop"
 explicitURL = 'arcgis-navigator://?start=100+Commercial+St+Portland+ME&startname=Esri&stop=43.633332,-70.259971&stopname=My+House&callback=arcgis-colletor://&callbackprompt=Collector'
 
 
-'''Call to libraries -- Generate single link pages from data above'''
-# create NavigatorURLScheme object
-# generateURL
-navigatorURLObject = NavigatorURLScheme(parameterDictionary)
-navigatorURL = navigatorURLObject.generateURL()
-# OR
-# create HTML file with single link
-# NavigatorURLHyperlinks().generateHTMLlink(navigatorURL, title)
-NavigatorURLHyperlinks().generateHTMLlink(explicitURL, title)
+# '''Call to libraries -- Generate single link pages from data above'''
+# # create NavigatorURLScheme object
+# # generateURL
+# navigatorURLObject = NavigatorURLScheme(parameterDictionary)
+# navigatorURL = navigatorURLObject.generateURL()
+# # OR
+# # create HTML file with single link
+# # NavigatorURLHyperlinks().generateHTMLlink(navigatorURL, title)
+# NavigatorURLHyperlinks().generateHTMLlink(explicitURL, title)
 
 
 '''Call to libraries -- Generate multiple link pages from either explicit list of CSV'''
-# hyperlinkObject = NavigatorURLHyperlinks()
-# # define list of link lists
-# # generate html page from proper input
-# # explicitURLs = (('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
-# #                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
-# #                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),)
-# # hyperlinkObject.generateHTMLpage(explicitURLs)
-# # OR
-# # prepare list of link lists from CSV
-# # generate html page from proper input
-# fileLocation = '/Users/joel8641/Dropbox/Esri Material/NavigatorURLScheme/NavigatorURLScheme_Library/applink_testcases.csv'
-# csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")
-# htmlPageTitle = "FryesLeap"
-# hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)
+hyperlinkObject = NavigatorURLHyperlinks()
+# define list of link lists
+# generate html page from proper input
+# explicitURLs = (('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
+#                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),
+#                 ('arcgis-navigator://?stop=43.681959,-70.092359&stopname=Jewell+Island&start=43.633332,-70.259971&startname=My+house', 'stopInaccessible'),)
+# hyperlinkObject.generateHTMLpage(explicitURLs)
+# OR
+# prepare list of link lists from CSV
+# generate html page from proper input
+fileLocation = '/Users/joel8641/Dropbox/Esri Material/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
+csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")
+htmlPageTitle = "FryesLeap"
+hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)

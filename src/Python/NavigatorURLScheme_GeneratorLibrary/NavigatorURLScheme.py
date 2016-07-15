@@ -228,24 +228,29 @@ class NavigatorURLHyperlinks():
         """
         outfile = "applinksPage_" + str(title) + ".htm"
         fp = open(outfile, 'w')
-        fp.write("<!doctype html public \"-//w3c/dtd html 4.0 Transitional//en\">\
-        <html> <head><title>Navigator App Links</title></head> <body bgcolor=\"white\"> <h1>Navigator App Links</h1><p><br>\n")
+        fp.write(str("<!doctype html public \"-//w3c/dtd html 4.0 Transitional//en\">\
+        <html> <head><title>{}: Navigator App Links</title></head> <body bgcolor=\"white\"> <h1>{}: Navigator App Links</h1><p><br>\n").format(str(title), str(title)))
         print("Generating HTML page at location of library...")
         print("Processing hyperlinks...\n")
+        count = 1
         for validURL in validURLs:
-            validURLtitle = str("<b>{}</b><br>").format(str(validURL[1]))
-            urlString = str("<a href=\"{}\">Click here to open the navigator app link </a><br><br>\n").format(str(validURL[0]))
+            if validURL[2] is not "": validURLcomments = str("<b>{}</b><br>").format(validURL[2])
+            urlString = str("<a href=\"{}\">{}. {}</a><br>").format(str(validURL[0]), str(count), str(validURL[1]))
+            urlStringText = str("<a>{}</a><br><br>\n").format(validURL[0])
             # Example of what string looks like --Delete after testing
+            if validURL[2] is not "": print(validURL[2])
             print(validURL[1])
             print(validURL[0] + "\n")
             # Write link to file
-            fp.write(validURLtitle)
+            if validURL[2] is not "": fp.write(validURLcomments)
             fp.write(urlString)
+            fp.write(urlStringText)
+            count += 1
         fp.write("</body></html>")
         fp.close()
         print("HTML page completed")
 
-    def csv2Lists(self, csvLocation, urllinkIndex=0, titleIndex=1, delimiter=','):
+    def csv2Lists(self, csvLocation, urllinkIndex=0, titleIndex=1, commentsIndex=2, delimiter=','):
         """
         supporting function for generateHTMLpage and generates url lists from csv file
         :param csvLocation: full path to csv file
@@ -258,9 +263,8 @@ class NavigatorURLHyperlinks():
         with open(str(csvLocation)) as csvFile:
             readCSV = csv.reader(csvFile, delimiter=delimiter)
             next(readCSV, None)
-            next(readCSV, None)
             for row in readCSV:
-                rowString = [str(row[urllinkIndex]), str(row[titleIndex])]
+                rowString = [str(row[urllinkIndex]), str(row[titleIndex]), str(row[commentsIndex])]
                 csvLists.append(rowString)
         csvFile.close()
         return csvLists
