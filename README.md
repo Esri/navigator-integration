@@ -15,8 +15,9 @@ This is a multi-language repository that contains documentation and sample code 
 ## Getting started
 
 Read the following documentation, and clone down the appropriate language into your development environment.
+<a name="documentation"></a>
 
-## Documentation<a name="documentation"></a>
+## Documentation
 
 ####What is the Navigator for ArcGIS URL scheme?
 
@@ -138,7 +139,7 @@ If you’d like your app users to be notified when navigation completes, include
 
 `callback`: Specifies which URL to call when navigation completes. If the `callback` parameter is specified, the app will be notified when navigation completes.  
 
-`callbackprompt`: Indicates that a message should appear asking the user if control should be given back to the calling app and specifies the text of that message (*optional*).
+`callbackprompt`: Indicates the app name that should be used when Navigator asks the user if control should be given back to the calling app (*optional*).
 
 Note that your custom URL scheme must be registered with the operating system. For more information on this see [Apple's guide to custom URL Schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899) or [Google's guide to Android Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters.html). 
 
@@ -150,8 +151,9 @@ arcgis-navigator://?stop=43.65958,-70.25118&callbackprompt=My+Cool+App&callback=
 
 ####Errors
 If an error is encountered when processing a URL scheme, the user will receive an alert.
+<a name="sample"></a>
 
-## Sample code<a name="sample"></a>
+## Sample code
 
 * [Swift (iOS)](https://github.com/Esri/navigator-integration/tree/master/src/Swift)
 * [Java (Android)](https://github.com/Esri/navigator-integration/tree/master/src/Android)
