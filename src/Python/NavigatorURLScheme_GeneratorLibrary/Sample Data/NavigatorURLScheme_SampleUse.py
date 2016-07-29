@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 '''import library'''
 # if library is inside folder as your script you can use:
 # import NavigatorURLScheme
-from src.Python.NavigatorURLScheme_GeneratorLibrary.NavigatorURLScheme import NavigatorURLScheme, NavigatorURLHyperlinks
+from NavigatorURLScheme import NavigatorURLScheme, NavigatorURLHyperlinks
 
 '''User information'''
 # example variables -- all optional
@@ -58,7 +58,7 @@ hyperlinkObject = NavigatorURLHyperlinks()
 # OR
 # prepare list of link lists from CSV
 # generate html page from proper input
-fileLocation = '/Users/joel8641/Dropbox/Esri Material/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
+fileLocation = '/Users/joel8641/Dropbox/Esri Material/Projects/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
 csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")
 htmlPageTitle = "FryesLeap"
 hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)

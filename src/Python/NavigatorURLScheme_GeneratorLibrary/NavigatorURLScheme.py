@@ -234,23 +234,27 @@ class NavigatorURLHyperlinks():
         print("Processing hyperlinks...\n")
         count = 1
         for validURL in validURLs:
-            if validURL[2] is not "": validURLcomments = str("<b>{}</b><br>").format(validURL[2])
-            urlString = str("<a href=\"{}\">{}. {}</a><br>").format(str(validURL[0]), str(count), str(validURL[1]))
-            urlStringText = str("<a>{}</a><br><br>\n").format(validURL[0])
+            if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(validURL[3])  # the test group info
+            urlString = str("<a href=\"{}\">{}. {}</a>").format(str(validURL[0]), str(count), str(validURL[1]))  # the hyperlink
+            if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(validURL[2])  # the PASS/FAIL info
+            urlStringText = str("<a>{}</a><br><br>\n").format(validURL[0])  # the url scheme text
             # Example of what string looks like --Delete after testing
-            if validURL[2] is not "": print(validURL[2])
+            if validURL[3] is not "": print(validURL[3])
             print(validURL[1])
+            if validURL[2] is not "": print(validURL[2])
             print(validURL[0] + "\n")
             # Write link to file
-            if validURL[2] is not "": fp.write(validURLcomments)
+            if validURL[3] is not "": fp.write(validURLcomments2)
             fp.write(urlString)
+            if validURL[2] is not "": fp.write(validURLcomments)
+            else: fp.write("<br>")
             fp.write(urlStringText)
             count += 1
         fp.write("</body></html>")
         fp.close()
         print("HTML page completed")
 
-    def csv2Lists(self, csvLocation, urllinkIndex=0, titleIndex=1, commentsIndex=2, delimiter=','):
+    def csv2Lists(self, csvLocation, delimiter=','):
         """
         supporting function for generateHTMLpage and generates url lists from csv file
         :param csvLocation: full path to csv file
@@ -264,7 +268,6 @@ class NavigatorURLHyperlinks():
             readCSV = csv.reader(csvFile, delimiter=delimiter)
             next(readCSV, None)
             for row in readCSV:
-                rowString = [str(row[urllinkIndex]), str(row[titleIndex]), str(row[commentsIndex])]
-                csvLists.append(rowString)
+                csvLists.append(row)
         csvFile.close()
         return csvLists
