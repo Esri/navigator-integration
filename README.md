@@ -2,26 +2,26 @@
 
 This is a multi-language repository that contains documentation and sample code for creating custom URL schemes in [Navigator for ArcGIS](http://doc.arcgis.com/en/navigator/).
 
-##Versions Supported
+## Supported versions
 
-* Navigator iOS 2.0.0 and greater
-* Navigator Android 0.2.0 (beta) and greater
+* Navigator for ArcGIS on iOS 2.0.0 or later
+* Navigator for ArcGIS on Android 0.2.0 (beta) or later
 
 ## What's included
 
 * [Documentation](#documentation) on the URL scheme structure
 * [Sample code](#sample) for iOS (Swift), Android (Java), and Web (JavaScript)
 
-## Getting started
+## Get started
 
-Read the following documentation, and clone down the appropriate language into your development environment.
+Read the following documentation and clone down the appropriate language into your development environment.
 <a name="documentation"></a>
 
 ## Documentation
 
 ####What is the Navigator for ArcGIS URL scheme?
 
-A URL scheme allows you to open a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to open, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, and navigating. This capability is available on the iOS and Android platforms.
+A URL scheme allows you to launch a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to open, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, and navigating. This capability is available on the iOS and Android platforms.
 
 ####Basic URL scheme structure
 
@@ -31,7 +31,7 @@ All Navigator URL schemes start with the identifier `arcgis-navigator` and can c
 arcgis-navigator://?parameter=value&parameter=value
 `
 
-The rest of this topic describes the various parameters Navigator supports.
+The rest of this topic describes the various parameters Navigator currently supports.
 
 ####Display directions to a single location
 
@@ -173,7 +173,7 @@ Not Esri's doc but still pretty dang useful :-)
 
 Find a bug or want to request a new feature? Please let us know by [submitting an issue](https://github.com/Esri/navigator-integration/issues/new). Thank you!
 
-## Contributing
+## Contribute
 
 Anyone and everyone is welcome to contribute. See our [guidelines for contributing](https://github.com/esri/contributing).
 
