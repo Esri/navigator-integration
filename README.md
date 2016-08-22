@@ -19,11 +19,11 @@ Read the following documentation and clone down the appropriate language into yo
 
 ## Documentation
 
-####What is the Navigator for ArcGIS URL scheme?
+####Navigator URL scheme overview
 
 A URL scheme allows you to launch a native app from another app, website, or email. You can set options in the URL that will be passed to the app you want to open, causing it to perform specific functions, such as searching for destinations, calculating routes to one or more stops, and navigating. This capability is available on the iOS and Android platforms.
 
-####Basic URL scheme structure
+####Basic Navigator URL scheme structure
 
 All Navigator URL schemes start with the identifier `arcgis-navigator` and can contain additional parameters that follow the form:
 
@@ -31,7 +31,7 @@ All Navigator URL schemes start with the identifier `arcgis-navigator` and can c
 arcgis-navigator://?parameter=value&parameter=value
 `
 
-The rest of this topic describes the various parameters Navigator currently supports.
+The remainder of this topic describes the various parameters Navigator currently supports.
 
 ####Display directions to a single location
 
@@ -163,15 +163,12 @@ If an error is encountered when processing a URL scheme, the user will receive a
 
 * [Navigator for ArcGIS documentation](http://doc.arcgis.com/en/navigator/)
 * [Collector for ArcGIS integration repository](http://developers.arcgis.com)
-
-Not Esri's doc but still pretty dang useful :-)
-
 * [Apple's guide to custom URL schemes](https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899)
 * [Google's guide to intents and intent filters](https://developer.android.com/guide/components/intents-filters.html)
 
 ## Issues
 
-Find a bug or want to request a new feature? Please let us know by [submitting an issue](https://github.com/Esri/navigator-integration/issues/new). Thank you!
+Find a bug or want to request a new feature? Let us know by [submitting an issue](https://github.com/Esri/navigator-integration/issues/new). Thank you!
 
 ## Contribute
 
