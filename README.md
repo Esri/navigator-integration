@@ -75,6 +75,8 @@ Use this to specify a starting point different than the user’s current locatio
 
 `startname`: Specifies the name of the start (*optional*).
 
+Note that specifying a startname does necessitate specifying a stopname.
+
 The `start` parameter includes either a set of latitude and longitude coordinates, or a query formatted address.
 
 The following example URL displays directions between Portland International Jetport and Hadlock Field:
@@ -91,11 +93,14 @@ Navigator can generate directions to multiple stops. Each stop is denoted with a
 arcgis-navigator://?stop=7+Exchange+St,+Portland,+ME&stop=225+Two+Lights+Rd,+Cape+Elizabeth,+ME
 ```
 
-The following example contains two stops with stop names:
+The following example contains two stops with two stop names:
 
 ```
 arcgis-navigator://?stop=103+Fox+St,+Portland,+ME+04101&stopname=Rising+Tide&stop=43.651508,-70.290554&stopname=Bissell+Bothers
 ```
+
+Note that if there's a stopname associated with one of the stops in your URL, all of the stops must have stopnames associated with them in the URL, otherwise it will not calculate a route. For example, if the above example URL contained two stops but just one stop name, it would not calculate a route. 
+
 ####Enable route optimization 
 Navigator can optimize the order of multiple stops if you include the `optimize` parameter in a URL scheme.
 
