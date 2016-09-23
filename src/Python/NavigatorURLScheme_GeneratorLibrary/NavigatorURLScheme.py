@@ -126,15 +126,18 @@ class NavigatorURLScheme():
                     stopBuilder += locationType + location
             else:
                 locationType, locationNameType = "stop=", "&stopname="
+                stop_count = 0
                 for listLocation in listLocations:
                     hasName = True if len(listLocation) > 1 else False
                     if self.__parameterCount > 0: stopBuilder += "&"
+                    elif stop_count > 0: stopBuilder += "&"
                     if hasName:
                         location, locationName = urllib.parse.quote_plus(str(listLocation[0]), ",'"), urllib.parse.quote_plus(str(listLocation[1]), ",'")
                         stopBuilder += locationType + location + locationNameType + locationName
                     else:
                         location = urllib.parse.quote_plus(str(listLocation[0]), ",'")
                         stopBuilder += locationType + location
+                    stop_count += 1
         return stopBuilder
 
     def _encodedCallback(self, callbackList=None):
@@ -234,19 +237,22 @@ class NavigatorURLHyperlinks():
         print("Processing hyperlinks...\n")
         count = 1
         for validURL in validURLs:
-            if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(validURL[3])  # the test group info
             urlString = str("<a href=\"{}\">{}. {}</a>").format(str(validURL[0]), str(count), str(validURL[1]))  # the hyperlink
-            if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(validURL[2])  # the PASS/FAIL info
             urlStringText = str("<a>{}</a><br><br>\n").format(validURL[0])  # the url scheme text
-            # Example of what string looks like --Delete after testing
-            if validURL[3] is not "": print(validURL[3])
-            print(validURL[1])
-            if validURL[2] is not "": print(validURL[2])
-            print(validURL[0] + "\n")
-            # Write link to file
-            if validURL[3] is not "": fp.write(validURLcomments2)
+            # additional indices if used
+            validURLcomments, validURLcomments2 = "", ""
+            if len(validURL) > 2:
+                if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(validURL[3])  # the test group info
+                if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(validURL[2])  # the PASS/FAIL info
+            # # Example of what string looks like --Delete after testing
+            # if validURL[3] is not "": print(validURL[3])
+            # print(validURL[1])
+            # if validURL[2] is not "": print(validURL[2])
+            # print(validURL[0] + "\n")
+            # Write info to file
+            if validURLcomments2 is not "": fp.write(validURLcomments2)
             fp.write(urlString)
-            if validURL[2] is not "": fp.write(validURLcomments)
+            if validURLcomments is not "": fp.write(validURLcomments)
             else: fp.write("<br>")
             fp.write(urlStringText)
             count += 1
