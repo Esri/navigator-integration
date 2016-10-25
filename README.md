@@ -4,8 +4,7 @@ This is a multi-language repository that contains documentation and sample code 
 
 ## Supported versions
 
-* Navigator for ArcGIS on iOS 2.0.0 or later
-* Navigator for ArcGIS on Android 0.2.0 (beta) or later
+* Navigator for ArcGIS 2.0.0 or later
 
 ## What's included
 
