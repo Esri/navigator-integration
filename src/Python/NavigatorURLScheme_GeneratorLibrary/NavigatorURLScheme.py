@@ -19,12 +19,14 @@ import csv
 import os
 import datetime
 import urllib.parse
+import io
+import pyqrcode
 
 '''
 Library for generating valid url schemes and generated html links/pages
 '''
 
-class NavigatorURLScheme():
+class NavigatorURLScheme:
     """
     generic library for generating the url schemes
     """
@@ -196,7 +198,7 @@ class NavigatorURLScheme():
         return parameters
 
 
-class NavigatorURLHyperlinks():
+class NavigatorURLHyperlinks:
     """
     generic class for hyperlink tools related to app link
     """
@@ -277,3 +279,38 @@ class NavigatorURLHyperlinks():
                 csvLists.append(row)
         csvFile.close()
         return csvLists
+
+
+class NavigatorURLQRCode:
+    """
+    generic class for making QR codes for app-links
+    """
+    def __init__(self):
+        pass
+
+    def returnQRCodeText(self, validURL):
+        objectQRCode = pyqrcode.create(validURL)
+        return objectQRCode.text()
+
+    def saveQRCodeSVG(self, validURL, filename, imageDirectory=None):
+        fullfilename = imageDirectory + filename if imageDirectory is not None else filename
+        objectQRCode = pyqrcode.create(validURL)
+        objectQRCode.svg(fullfilename + ".svg", scale=4)
+        # in-memory stream is also supported
+        buffer = io.BytesIO()
+        objectQRCode.svg(buffer)
+        # do whatever you want with buffer.getvalue()
+        print(list(buffer.getvalue()))
+
+    def saveQRCodePNG(self, validURL, filename, imageDirectory=None):
+        fullfilename = imageDirectory + filename if imageDirectory is not None else filename
+        objectQRCode = pyqrcode.create(validURL)
+        with open(fullfilename + ".png", 'wb') as fstream:
+            objectQRCode.png(fstream, scale=5)
+        # same as above
+        objectQRCode.png(fullfilename + ".png", scale=5)
+        # in-memory stream is also supported
+        buffer = io.BytesIO()
+        objectQRCode.png(buffer)
+        # do whatever you want with buffer.getvalue()
+        print(list(buffer.getvalue()))
