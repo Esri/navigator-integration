@@ -25,7 +25,7 @@ from src.Python.NavigatorURLScheme_GeneratorLibrary.NavigatorURLScheme import Na
 '''1) Call to libraries -- Generate multiple link pages from either explicit list of CSV'''
 # prepare list of link lists from CSV and generate html page
 hyperlinkObject = NavigatorURLHyperlinks()
-fileLocation = '/Users/joel8641/Dropbox/Esri Material/Projects/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
+fileLocation = '/Users/joel8641/Box Sync/Esri Material/Projects/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
 csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")  # change the 'csv2Lists()' indices in library if different than example csv
 htmlPageTitle = "FryesLeap"
 hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)
