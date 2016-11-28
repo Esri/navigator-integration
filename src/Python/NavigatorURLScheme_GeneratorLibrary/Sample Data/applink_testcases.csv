@@ -1,10 +1,16 @@
 applink,title,result,group
-arcgis-navigator://?,Just the scheme no Params,FAIL,Basic; App Link
-arcgis-navigator://,Just the scheme no Params no ?,PASS,Basic; App Link
+arcgis-navigator://,Navigator Scheme,PASS,Basic; App Link
+arcgis-workforce://,Workforce Scheme,PASS,Basic; App Link
+arcgis-explorer://,Explorer Scheme,PASS,Basic; App Link
+arcgis-collector://,Collector Scheme,PASS,Basic; App Link
+arcgis-survey123://,Survey123 Scheme,PASS,Basic; App Link
 "arcgis-navigator://?&stop=43.633332,-70.259971&stopname=My+House",One stop with leading &,FAIL - xxxxxx,Basic; App Link
 "arcgis-navigator://stop=43.633332,-70.259971&stopname=My+House",One stop with with no ? after app-scheme,FAIL - xxxxxx,Basic; App Link
 "arcgis-navigator://?start=43.222,-76.444&startname=esri+portland+ME",Only start parameter provided,PASS - nothing happen,Basic; App Link
 arcgis-navigator://?optimize=false&navigate=false&travelmode=Driving+Time?navigate=false,Everything but start or stops,PASS - xxxxx?,Basic; App Link
+arcgis-explorer://?id=2adf08a4a1a84834a773805a6e86f69e,Explorer to Public Web Map,PASS,Basic; App Link; Explorer 
+arcgis-explorer://?id=2a30ec6298ac4042932eaeb138244c60,Explorer to nitrouser Web Map,PASS,Basic; App Link; Explorer 
+"arcgis-explorer://?id=b5844cb48ef54f05b6863d2c9d97836c&centerx=136547,420964&centery=458607,332786&scale=637680,002174",Explorer to Web Map with additional parameters,PASS,Basic; App Link; Explorer 
 "arcgis-navigator://?stop=125+Commercial+St,+Portland,+ME+04103&stopname=Down+the+street&callback=mynotsocoolapp://&callbackprompt=bad+app",Bad CallBack App,FAIL - xxxxx,Basic; Callback
 "arcgis-navigator://?stop=125+Commercial+St,+Portland,+ME+04103&stopname=Down+the+street&callback=arcgis-collector://?&callbackprompt=Collector+for+ArcGIS",Collector Callback,PASS,Basic; Callback
 "arcgis-navigator://?stop=125+Commercial+St,+Portland,+ME+04103&stopname=Down+the+street&callback=arcgis-explorer://?&callbackprompt=Explorer+for+ArcGIS",Explorer Callback,PASS,Basic; Callback
