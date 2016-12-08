@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 from src.Python.NavigatorURLScheme_GeneratorLibrary.NavigatorURLScheme import NavigatorURLScheme, NavigatorURLHyperlinks
 
 '''1) Specify if you want to generate or use explicit url'''
-generateURL = True
+generateURL = False
 
 '''2a) Example variables for building url -- USE THIS INFO IF YOU WANT TO GENERATE A HTML PAGE USING LIBRARY GENERATED URL'''
 start = ['43.633332,-70.259971', 'My house']  # <-- use list (name item is optional)
