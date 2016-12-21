@@ -27,5 +27,6 @@ from src.Python.NavigatorURLScheme_GeneratorLibrary.NavigatorURLScheme import Na
 hyperlinkObject = NavigatorURLHyperlinks()
 fileLocation = '/Users/joel8641/Box Sync/Esri Material/Projects/navigator-integration/src/Python/NavigatorURLScheme_GeneratorLibrary/Sample Data/applink_testcases.csv'
 csvLists = hyperlinkObject.csv2Lists(fileLocation, delimiter=",")  # change the 'csv2Lists()' indices in library if different than example csv
-htmlPageTitle = "FryesLeap"
-hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle)
+htmlPageTitle = "Navigator"
+# hyperlinkObject.generateHTMLpage(csvLists, htmlPageTitle, includeQR=True, imageDirectory='./qrcodes/')
+hyperlinkObject.generateStyledHTMLpage(csvLists, htmlPageTitle, styleFile="./styles/popup.css", includeQR=True, imageDirectory='./qrcodes/')
