@@ -266,7 +266,7 @@ class NavigatorURLHyperlinks:
             # # Example of what string looks like --Delete after testing
             # if validURL[3] is not "": print(validURL[3])
             # print(validURL[1])
-            # if validURL[2] is not "": print(validURL[2])
+            # if validURL[2] is not "": print(validURL[2]
             # print(validURL[0] + "\n")
             # Write info to file
             if validURLcomments2 is not "": fp.write(validURLcomments2)
