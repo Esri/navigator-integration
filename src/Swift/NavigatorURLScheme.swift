@@ -74,7 +74,7 @@ public final class NavigatorURLScheme {
 
     public convenience init(destination: LocationType, name: String? = nil) {
         self.init()
-        addStop(at: destination, with: name)
+        addStop(at: destination, named: name)
     }
 
     public init(optimizeRoute optimize: Bool = false, startNavigating navigate: Bool = false) {
@@ -82,11 +82,11 @@ public final class NavigatorURLScheme {
         self.navigate = navigate
     }
 
-    public func setStart(at location: LocationType, with name: String? = nil) {
+    public func setStart(at location: LocationType, named name: String? = nil) {
         start = NavigatorStop(location: location, name: name, stopType: .Start)
     }
 
-    public func addStop(at location: LocationType, with name: String? = nil) {
+    public func addStop(at location: LocationType, named name: String? = nil) {
         stops.append(NavigatorStop(location: location, name: name, stopType: .Stop))
     }
 
@@ -94,7 +94,7 @@ public final class NavigatorURLScheme {
         callback = Callback(scheme: scheme, prompt: prompt)
     }
 
-    public func generateURL() -> URL? {
+    public var url: URL? {
 
         var stringBuilder = "\(NavigatorURLScheme.scheme)//?optimize=\(optimize ? "true" : "false")&navigate=\(navigate ? "true" : "false")"
 
