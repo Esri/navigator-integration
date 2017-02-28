@@ -17,45 +17,41 @@
 
  */
 
-
+import CoreLocation
 import Foundation
+import UIKit
 
-private extension String {
-    private func queryArgumentEncodedString() -> String? {
-        let charSet = NSCharacterSet.URLQueryAllowedCharacterSet().mutableCopy() as! NSMutableCharacterSet
-        charSet.removeCharactersInString("&")
-
-        return stringByAddingPercentEncodingWithAllowedCharacters(charSet)
+fileprivate extension String {
+    fileprivate func queryArgumentEncodedString() -> String? {
+        var charSet = NSCharacterSet.urlQueryAllowed
+        charSet.remove(charactersIn: "&")
+        return addingPercentEncoding(withAllowedCharacters: charSet)
     }
 }
 
 public final class NavigatorURLScheme {
 
     public static let scheme = "arcgis-navigator:"
-    
+
     public static var canOpen: Bool {
-        return UIApplication.sharedApplication().canOpenURL(NSURL(string: scheme)!)
+        return UIApplication.shared.canOpenURL(URL(string: scheme)!)
     }
 
-    public struct URLSchemeError: ErrorType {
+    public struct URLSchemeError: Error {
         let unencodableString: String
     }
 
     public enum LocationType {
 
-        case WGS84(point: AGSPoint)
-        case Address(String)
+        case coordinate(CLLocationCoordinate2D)
+        case address(String)
 
-        public func queryArgument() throws -> String {
+        public func queryArgument() -> String? {
             switch self {
-            case .WGS84(point: let point):
-                return "\(point.y),\(point.x)"
-            case .Address(let address):
-                if let address = address.queryArgumentEncodedString() {
-                    return address
-                } else {
-                    throw URLSchemeError(unencodableString:address)
-                }
+            case .coordinate(let coord):
+                return "\(coord.latitude),\(coord.longitude)"
+            case .address(let address):
+                return address.queryArgumentEncodedString()
             }
         }
     }
@@ -76,16 +72,21 @@ public final class NavigatorURLScheme {
 
     private var callback: Callback?
 
+    public convenience init(destination: LocationType, name: String? = nil) {
+        self.init()
+        addStop(at: destination, with: name)
+    }
+
     public init(optimizeRoute optimize: Bool = false, startNavigating navigate: Bool = false) {
         self.optimize = optimize
         self.navigate = navigate
     }
 
-    public func setStartAtLocation(location: LocationType, withName name: String? = nil) {
+    public func setStart(at location: LocationType, with name: String? = nil) {
         start = NavigatorStop(location: location, name: name, stopType: .Start)
     }
 
-    public func addStopAtLocation(location: LocationType, withName name:String? = nil) {
+    public func addStop(at location: LocationType, with name: String? = nil) {
         stops.append(NavigatorStop(location: location, name: name, stopType: .Stop))
     }
 
@@ -93,24 +94,34 @@ public final class NavigatorURLScheme {
         callback = Callback(scheme: scheme, prompt: prompt)
     }
 
-    public func generateURL() throws -> NSURL? {
+    public func generateURL() -> URL? {
 
         var stringBuilder = "\(NavigatorURLScheme.scheme)//?optimize=\(optimize ? "true" : "false")&navigate=\(navigate ? "true" : "false")"
 
-        if let start = try start?.encodeStop() {
+        if start != nil {
+            guard let start = start!.encodeStop() else {
+                return nil
+            }
             stringBuilder += start
         }
 
         if !stops.isEmpty {
-            let encodedStops = try stops.flatMap({ return try $0.encodeStop() }).joinWithSeparator("")
-            stringBuilder += encodedStops
+            let encodedStops = stops.flatMap { $0.encodeStop() }
+            guard encodedStops.count == stops.count else {
+                return nil
+            }
+            let encodedStopsString = encodedStops.joined(separator: "")
+            stringBuilder += encodedStopsString
         }
 
-        if let callback = try callback?.encodedArgumentString() {
+        if callback != nil {
+            guard let callback = callback?.encodedArgumentString() else {
+                return nil
+            }
             stringBuilder += callback
         }
 
-        return NSURL(string: stringBuilder)
+        return URL(string: stringBuilder)
     }
 
     private struct NavigatorStop {
@@ -125,21 +136,26 @@ public final class NavigatorURLScheme {
             self.stopType = stopType
         }
 
-        private func encodeStop() throws -> String {
+        fileprivate func encodeStop() -> String? {
+
+            guard let queryArgument = location.queryArgument() else {
+                return nil
+            }
 
             let nameArgument: String
 
             if let name = name {
-                if let encoded = name.queryArgumentEncodedString() {
-                    nameArgument = "&\(stopType.rawValue)name=\(encoded)"
-                } else {
-                    throw URLSchemeError(unencodableString: name)
+
+                guard let encoded = name.queryArgumentEncodedString() else {
+                    return nil
                 }
+
+                nameArgument = "&\(stopType.rawValue)name=\(encoded)"
             } else {
                 nameArgument = ""
             }
 
-            return "&\(stopType.rawValue)=\(try location.queryArgument())\(nameArgument)"
+            return "&\(stopType.rawValue)=\(queryArgument)\(nameArgument)"
         }
     }
 
@@ -153,22 +169,22 @@ public final class NavigatorURLScheme {
             callbackPrompt = prompt
         }
 
-        public func encodedArgumentString() throws -> String {
+        public func encodedArgumentString() -> String? {
 
-            let encodedScheme: String
-            if let encoded = callbackScheme.queryArgumentEncodedString() {
-                encodedScheme = "&callback=\(encoded)"
-            } else {
-                throw URLSchemeError(unencodableString: callbackScheme)
+
+            guard let encoded = callbackScheme.queryArgumentEncodedString() else {
+                return nil
             }
+
+            let encodedScheme = "&callback=\(encoded)"
 
             let encodedPrompt: String
             if let prompt = callbackPrompt {
-                if let encoded = prompt.queryArgumentEncodedString() {
-                    encodedPrompt = "&callbackprompt=\(encoded)"
-                } else {
-                    throw URLSchemeError(unencodableString: prompt)
+                guard let encoded = prompt.queryArgumentEncodedString() else {
+                    return nil
                 }
+                
+                encodedPrompt = "&callbackprompt=\(encoded)"
             } else {
                 encodedPrompt = ""
             }
