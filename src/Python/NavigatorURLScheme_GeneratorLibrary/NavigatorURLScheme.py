@@ -225,7 +225,7 @@ class NavigatorURLHyperlinks:
         fp.write("</body></html>")
         fp.close()
 
-    def generateHTMLpage(self, validURLs, title):
+    def generateHTMLpage(self, validURLs, title, includeQR=False, imageDirectory=None):
         """
         generates a html page given
         :param validURLs: a list of url lists [[urlStr_1, urlTitleStr_1], .... , [urlStr_N, urlTitleStr_N]]
@@ -239,28 +239,96 @@ class NavigatorURLHyperlinks:
         print("Processing hyperlinks...\n")
         count = 1
         for validURL in validURLs:
-            urlString = str("<a href=\"{}\">{}. {}</a>").format(str(validURL[0]), str(count), str(validURL[1]))  # the hyperlink
-            urlStringText = str("<a>{}</a><br><br>\n").format(validURL[0])  # the url scheme text
+            url = str(validURL[0])
+            urlTitle = str(validURL[1]).replace("/", "").replace(".", "")
+            # html bits
+            urllinkHTMLString = str("<a href=\"{}\">{}. {}</a>").format(url, str(count), urlTitle)  # the hyperlink
+            urltitleHTMLString = str("<a>{}</a><br><br>\n").format(url)  # the url scheme text
             # additional indices if used
             validURLcomments, validURLcomments2 = "", ""
             if len(validURL) > 2:
-                if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(validURL[3])  # the test group info
-                if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(validURL[2])  # the PASS/FAIL info
+                comments1 = validURL[2]
+                comments2 = validURL[3]
+                if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(comments1)  # the PASS/FAIL info
+                if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(comments2)  # the test group info
+            if includeQR:
+                try:
+                    NavigatorURLQRCode().saveQRCodePNG(url, urlTitle, imageDirectory)
+                except:
+                    print("skipping code, too big.....")
+                qrcodeHTML = "<a href=\"#myPopup\" data-rel=\"popup\" data-position-to=\"window\">" \
+                             "<img src=\"./qrcodes/sample.png\" alt=\"QR Popup\" style=\"width:200px;\"></a>" \
+                             "<div data-role=\"popup\" id=\"myPopup\">" \
+                             "<a href=\"#pageone\" data-rel=\"back\" class =\"ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right\">Close</a><img src=\"./qrcodes/{}.png\" alt=\"{}\">" \
+                             "</div>".format(urlTitle, url)
+
+                # qrcodeImageHTML = "<img src=\"./qrcodes/{}.png\"></img>".format(urlTitle)
             # # Example of what string looks like --Delete after testing
             # if validURL[3] is not "": print(validURL[3])
             # print(validURL[1])
-            # if validURL[2] is not "": print(validURL[2])
+            # if validURL[2] is not "": print(validURL[2]
             # print(validURL[0] + "\n")
             # Write info to file
             if validURLcomments2 is not "": fp.write(validURLcomments2)
-            fp.write(urlString)
+            fp.write(urllinkHTMLString)
             if validURLcomments is not "": fp.write(validURLcomments)
             else: fp.write("<br>")
-            fp.write(urlStringText)
+            fp.write(urltitleHTMLString)
+
+            if includeQR: fp.write(qrcodeHTML)
+
             count += 1
         fp.write("</body></html>")
         fp.close()
         print("HTML page completed")
+
+
+    def generateStyledHTMLpage(self, validURLs, title, styleFile=None, includeQR=False, imageDirectory=None):
+        """
+        generates a html page given
+        :param validURLs: a list of url lists [[urlStr_1, urlTitleStr_1], .... , [urlStr_N, urlTitleStr_N]]
+        :param title: title of html page as string
+        """
+        print("Generating HTML page at location of library...")
+        print("Processing hyperlinks...\n")
+        outfile = "applinksPage_" + str(title) + ".htm"
+        fp = open(outfile, 'w')
+        fp.write(str("<!doctype html public \"-//w3c/dtd html 4.0 Transitional//en\">"
+                     "<html> <head><title>{}: Navigator App Links</title>").format(str(title)))
+        if styleFile: fp.write(str("<link rel=\"stylesheet\" type=\"text/css\" href=\"{}\">").format(styleFile))
+        fp.write(str("</head> <body bgcolor=\"white\"> <h1>{}: Navigator App Links</h1><p><div id=\"thumbwrap\">\n").format(str(title)))
+        count = 1
+        for validURL in validURLs:
+            url = str(validURL[0])
+            urlTitle = str(validURL[1]).replace("/", "").replace(".", "")
+            # html bits
+            urllinkHTMLString = str("<a href=\"{}\">{}. {}</a>").format(url, str(count), urlTitle)  # the hyperlink
+            urltitleHTMLString = str("<a>{}</a><br>\n").format(url)  # the url scheme text
+            # additional indices if used
+            validURLcomments, validURLcomments2 = "", ""
+            if len(validURL) > 2:
+                comments1 = validURL[2]
+                comments2 = validURL[3]
+                if validURL[2] is not "": validURLcomments = str("<a>\t({})</a><br>").format(comments1)  # the PASS/FAIL info
+                if validURL[3] is not "": validURLcomments2 = str("<b>{}</b><br>").format(comments2)  # the test group info
+            if includeQR:
+                try:
+                    NavigatorURLQRCode().saveQRCodePNG(url, urlTitle, imageDirectory)
+                except:
+                    print("skipping code, too big.....")
+                qrcodeHTML = "<a class=\"thumb\" href=\"#\"><img src=\"./qrcodes/sample.png\" style=\"height: 20px; width: 20px;\" " \
+                             "alt=\"QR Popup\"><span> <img src=\"./qrcodes/{}.png\" alt=\"{}\"></span></a><br><br>".format(urlTitle, url)
+            if validURLcomments2 is not "": fp.write(validURLcomments2)
+            fp.write(urllinkHTMLString)
+            if validURLcomments is not "": fp.write(validURLcomments)
+            else: fp.write("<br>")
+            fp.write(urltitleHTMLString)
+            if includeQR: fp.write(qrcodeHTML)
+            count += 1
+        fp.write("</div></body></html>")
+        fp.close()
+        print("HTML page completed")
+
 
     def csv2Lists(self, csvLocation, delimiter=','):
         """
@@ -304,11 +372,11 @@ class NavigatorURLQRCode:
 
     def saveQRCodePNG(self, validURL, filename, imageDirectory=None):
         fullfilename = imageDirectory + filename if imageDirectory is not None else filename
-        objectQRCode = pyqrcode.create(validURL)
+        objectQRCode = pyqrcode.create(validURL, error='L')
         with open(fullfilename + ".png", 'wb') as fstream:
-            objectQRCode.png(fstream, scale=5)
+            objectQRCode.png(fstream, scale=10)
         # same as above
-        objectQRCode.png(fullfilename + ".png", scale=5)
+        objectQRCode.png(fullfilename + ".png", scale=10)
         # in-memory stream is also supported
         buffer = io.BytesIO()
         objectQRCode.png(buffer)

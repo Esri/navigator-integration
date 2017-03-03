@@ -1,0 +1,27 @@
+#thumbwrap {
+	margin:75px auto;
+	width:90%; height:90%;
+}
+.thumb {
+	float:left; /* must be floated for same cross browser position of larger image */
+	position:relative;
+	margin:3px;
+}
+.thumb img { 
+	border:1px solid #000;
+	vertical-align:bottom;
+	height: 500px; 
+	width: 500px;
+}
+.thumb:hover {
+	border:0; /* IE6 needs this to show large image */
+	z-index:1;
+}
+.thumb span { 
+	position:absolute;
+	visibility:hidden;
+}
+.thumb:hover span { 
+	visibility:visible;
+	top:12px; left:12px; 
+}
