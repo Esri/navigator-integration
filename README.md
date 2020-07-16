@@ -1,4 +1,6 @@
-This repository is archived and no longer maanged. Please vist the [ArcGIS Navigator help documentation](https://doc.arcgis.com/en/navigator/android-phone/help/deploy.htm#ESRI_SECTION1_C30D73392D964D51A8B606128A8A6E8F) for more information on linking to Navigator
+**This repository is archived and no longer managed.**
+
+Please vist the [ArcGIS Navigator help documentation](https://doc.arcgis.com/en/navigator/android-phone/help/deploy.htm#ESRI_SECTION1_C30D73392D964D51A8B606128A8A6E8F) for more information on linking to Navigator
 
 
 > # Navigator custom URL scheme
